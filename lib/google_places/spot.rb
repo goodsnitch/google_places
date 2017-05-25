@@ -242,13 +242,13 @@ module GooglePlaces
     # @option options [Object] :retry_options[:status] ([])
     # @option options [Integer] :retry_options[:max] (0) the maximum retries
     # @option options [Integer] :retry_options[:delay] (5) the delay between each retry in seconds
-    def self.find(place_id, api_key, options = {})
+    def self.find(reference, api_key, options = {})
       language  = options.delete(:language)
       retry_options = options.delete(:retry_options) || {}
       extensions = options.delete(:review_summary) ? 'review_summary' : nil
 
       response = Request.spot(
-        :placeid => place_id,
+        :reference => reference,
         :key => api_key,
         :language => language,
         :extensions => extensions,
